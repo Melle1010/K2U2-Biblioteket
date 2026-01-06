@@ -8,6 +8,7 @@ CREATE TABLE LibraryMember(
 CREATE TABLE Book(
 	BookId INT IDENTITY(1,1) PRIMARY KEY,
 	Title NVARCHAR(50) NOT NULL,
+	StockBalance INT DEFAULT 5,
 	Author NVARCHAR(50) NOT NULL
 )
 
@@ -28,4 +29,5 @@ CREATE TABLE BookReturn(
 	FkLoanId INT NOT NULL,
 	CONSTRAINT FK_BookReturn_Loan FOREIGN KEY (FkLoanId) REFERENCES Loan(LoanId),
 )
+
 
