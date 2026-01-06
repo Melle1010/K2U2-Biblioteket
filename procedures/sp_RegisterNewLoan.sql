@@ -21,7 +21,7 @@ BEGIN
         IF EXISTS (SELECT 1 FROM View_ActiveLoans WHERE BookTitle = (SELECT Title FROM Book WHERE BookId = @BookId))
         BEGIN
             PRINT 'Boken är redan utlånad.';
-            ROLLBACK; -- Avbryt och släpp låset
+            ROLLBACK;
             RETURN;
         END
 
