@@ -38,7 +38,7 @@ Constraints: Användning av Foreign Keys och NOT NULL säkerställer att inga l�
 ## Optimering
 Prestandan har förbättrats genom strategisk indexering och effektiv datahämtning:
 
-Indexering: I indexes.sql har vi skapat icke-klustrade index på Book(Title) och Book(Author). Detta gör att sökningar i biblioteket går snabbt även när bokbeståndet växer.
+Indexering: I indexes.sql har jag skapat icke-klustrade index på Book(Title) och Book(Author). Detta gör att sökningar i biblioteket går snabbt även när bokbeståndet växer.
 
 Vyer (Views): Genom View_ActiveLoans flyttas komplex JOIN-logik från applikationen till databasen, vilket förenklar koden och optimerar frågekörningen.
 
