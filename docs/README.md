@@ -5,7 +5,6 @@ Detta är ett administrativt verktyg för bibliotekshantering, utvecklat som en 
 
 ---
 ## DOKUMENTATION
-
 https://github.com/Melle1010/K2U2-Biblioteket/blob/79041ed5ed750555f52c44359a7d3007ea07c372/docs/K2U2%20Dokumentation.pdf
 ---
 
