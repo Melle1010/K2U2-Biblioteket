@@ -5,7 +5,7 @@ Detta är ett administrativt verktyg för bibliotekshantering, utvecklat som en 
 
 ---
 
-## 📖 Verksamhetsbeskrivning
+## Verksamhetsbeskrivning
 Systemet är byggt för att automatisera och säkra ett biblioteks dagliga drift. 
 * **Bokhantering:** Registrering av titlar, författare och lagerstatus.
 * **Medlemshantering:** Register över bibliotekets användare.
@@ -15,4 +15,26 @@ Systemet är byggt för att automatisera och säkra ett biblioteks dagliga drift
 ---
 
 <img width="1524" height="690" alt="image" src="https://github.com/user-attachments/assets/22bd4f3b-5c4f-46ab-91df-ebf42a8e1e16" />
+
+## Dataintegritet
+För att säkerställa att databasen aldrig hamnar i ett inkonsekvent tillstånd används flera tekniker:
+
+Triggers: Triggern trg_UpdateStockOnReturn garanterar att bokens lagersaldo ökar direkt när en återlämning registreras, oavsett om det sker via applikationen eller direkt i SQL.
+
+Stored Procedures med Transaktioner: I proceduren sp_RegisterNewLoan används SERIALIZABLE isolationsnivå. Detta förhindrar "race conditions", vilket innebär att två användare inte kan låna den sista kopian av en bok exakt samtidigt.
+
+Constraints: Användning av Foreign Keys och NOT NULL säkerställer att inga lån kan existera utan en giltig bok eller medlem.
+
+---
+
+## Optimering
+Prestandan har förbättrats genom strategisk indexering och effektiv datahämtning:
+
+Indexering: I indexes.sql har vi skapat icke-klustrade index på Book(Title) och Book(Author). Detta gör att sökningar i biblioteket går snabbt även när bokbeståndet växer.
+
+Vyer (Views): Genom View_ActiveLoans flyttas komplex JOIN-logik från applikationen till databasen, vilket förenklar koden och optimerar frågekörningen.
+
+Eager Loading: I C#-koden används .Include() för att hämta relaterad data i ett enda anrop till databasen, vilket minimerar antalet "rundresor" (N+1-problemet).
+
+---
 
